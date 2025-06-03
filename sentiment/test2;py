@@ -1,0 +1,26 @@
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+# Initialiser l'analyseur
+analyzer = SentimentIntensityAnalyzer()
+
+# Collection d'avis clients avec des expressions variées
+reviews = [
+]
+
+def get_sentiment(compound_score):
+    """Interpréter le score compound"""
+    if compound_score >= 0.05:
+        return "positif"
+    elif compound_score <= -0.05:
+        return "négatif"
+    else:
+        return "neutre"
+
+# Analyse des sentiments
+for review in reviews:
+    score = analyzer.polarity_scores(review)
+    sentiment = get_sentiment(score["compound"])
+    
+    print(f"Review: {review}")
+    print(f"Compound Score: {score['compound']:.3f}, Sentiment: {sentiment}")
+    print("---")
